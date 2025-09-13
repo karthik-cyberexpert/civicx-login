@@ -216,6 +216,7 @@ body {
 /* Password Strength Indicator */
 .password-strength {
   margin-top: 8px;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .password-requirements {
@@ -226,6 +227,39 @@ body {
   background: #f9fafb;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.password-requirements.complete {
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 200px;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
 }
 
 .requirement {
@@ -241,6 +275,10 @@ body {
   color: #059669;
 }
 
+.requirement.unmet {
+  color: #dc2626;
+}
+
 .requirement svg {
   color: #ef4444;
   transition: color 0.2s ease;
@@ -248,6 +286,10 @@ body {
 
 .requirement.met svg {
   color: #059669;
+}
+
+.requirement.unmet svg {
+  color: #dc2626;
 }
 
 /* Button Styles */
@@ -556,6 +598,24 @@ body {
     font-size: 13px;
     letter-spacing: 0.3px;
   }
+
+  .back-button {
+    top: 16px;
+    left: 16px;
+    padding: 6px;
+  }
+
+  .signup-options {
+    gap: 16px;
+  }
+
+  .primary-signup-options {
+    gap: 10px;
+  }
+
+  .secondary-signup-options {
+    gap: 10px;
+  }
 }
 
 /* Small Mobile Devices (iPhone 6/7/8, small Android) */
@@ -599,6 +659,11 @@ body {
   .auth-divider span {
     padding: 7px 20px;
     font-size: 14px;
+  }
+
+  .back-button {
+    top: 18px;
+    left: 18px;
   }
 }
 
@@ -785,6 +850,72 @@ body {
   .auth-footer {
     margin-top: 20px;
   }
+
+  .back-button {
+    top: 12px;
+    left: 12px;
+    padding: 4px;
+  }
+
+  .signup-options {
+    gap: 12px;
+  }
+
+  .bio-textarea {
+    padding: 10px 12px;
+    font-size: 14px;
+    min-height: 70px;
+  }
+
+  .username-checking {
+    font-size: 13px;
+  }
+
+  .username-available {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .suggestion-btn {
+    padding: 2px 5px;
+    font-size: 10px;
+  }
+
+  .primary-signup-options {
+    gap: 8px;
+  }
+
+  .secondary-signup-options {
+    gap: 8px;
+  }
+
+  .bio-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+    min-height: 80px;
+  }
+
+  .char-count {
+    font-size: 11px;
+  }
+
+  .profile-actions {
+    gap: 10px;
+  }
+
+  .username-available {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .suggestions-title {
+    font-size: 12px;
+  }
+
+  .suggestion-btn {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
 }
 
 /* Portrait Orientation Optimizations */
@@ -858,6 +989,236 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Multi-step Signup Styles */
+.signup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.primary-signup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.secondary-signup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button:hover {
+  background: #f3f4f6;
+  color: #4f46e5;
+  transform: translateX(-2px);
+}
+
+.confirm-password-container {
+  animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 200px;
+  }
+}
+
+/* Step indicator styles */
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  transition: all 0.3s ease;
+}
+
+.step-dot.active {
+  background: #4f46e5;
+  transform: scale(1.2);
+}
+
+.step-dot.completed {
+  background: #059669;
+}
+
+/* Enhanced button styles for multi-step */
+.btn-outline {
+  background: transparent;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #4f46e5;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Profile Setup Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bio-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.bio-textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.bio-textarea::placeholder {
+  color: #9ca3af;
+  font-size: 15px;
+  opacity: 1;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Username Availability Styles */
+.username-input-container {
+  position: relative;
+}
+
+.username-status {
+  margin-top: 12px;
+}
+
+.username-checking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.username-available {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #059669;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  background: #ecfdf5;
+  border-radius: 8px;
+  border: 1px solid #a7f3d0;
+}
+
+.username-suggestions {
+  margin-top: 8px;
+}
+
+.suggestions-title {
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.suggestion-btn {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.suggestion-btn:hover {
+  background: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
