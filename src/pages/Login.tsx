@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, User, Lock } from 'lucide-react';
+import { Shield } from 'lucide-react';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import SocialLoginButton from '../components/SocialLoginButton';
